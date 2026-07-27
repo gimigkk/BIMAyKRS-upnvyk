@@ -14,7 +14,7 @@ Bot otomatis pemantau dan eksekutor (*Auto-Enroll*) KRS portal BIMA UPN "Veteran
 
 ---
 
-## 📂 Struktur Proyek
+## 📂 Struktur Repositori
 
 ```
 BotKrs/
@@ -25,12 +25,6 @@ BotKrs/
 ├── requirements.txt     # Dependensi Python & Playwright
 ├── .env.example         # Template variabel lingkungan
 ├── .gitignore           # Menjaga file rahasia & build lokal agar tidak ter-push
-├── windows/             # Skrip khusus Windows (Di-ignore dari git, dibundel di Zip)
-│   ├── INSTALL.bat
-│   ├── MULAI.bat
-│   ├── config.txt
-│   ├── Cara Isi Config.txt
-│   └── README.txt
 └── tests/               # Unit test suite (Pytest & Playwright)
     └── test_check_slots.py
 ```
@@ -84,22 +78,10 @@ pytest tests/test_check_slots.py -v
 
 ---
 
-## 📦 Membangun Paket Distribusi Windows (Zip)
+## 🪟 Penggunaan untuk Pengguna Windows (Non-Teknis)
 
-Untuk membundel aplikasi bagi pengguna Windows non-teknis tanpa menyertakan kredensial di repository Git:
-
-```bash
-zip -j BotKRS_Untuk_Teman.zip main.py notifier.py config_reader.py utils.py requirements.txt windows/*
-```
-
-Hasil zip (`BotKRS_Untuk_Teman.zip`) berisi file installer otomatis dan konfigurasi default yang siap langsung dipakai.
-
----
-
-## 🪟 Penggunaan (Pengguna Windows / Non-Teknis)
-
-Untuk pengguna Windows yang menerima paket distribusi zip:
+Untuk teman/pengguna non-teknis di Windows, gunakan paket ZIP **`BotKRS_Untuk_Teman.zip`**:
 1. Ekstrak `BotKRS_Untuk_Teman.zip`.
-2. Klik ganda **`INSTALL.bat`** (hanya sekali saat pertama kali).
+2. Klik ganda **`INSTALL.bat`** (hanya sekali saat pertama kali instalasi).
 3. Isi data target mata kuliah pada file **`config.txt`**.
 4. Klik ganda **`MULAI.bat`** untuk menjalankan bot.
