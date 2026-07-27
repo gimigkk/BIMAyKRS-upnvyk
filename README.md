@@ -1,39 +1,33 @@
-# 🤖 BIMAyKRS for UPNVY
+# BIMAyKRS for UPNVY
 
-Bot otomatis pemantau dan eksekutor (*Auto-Enroll*) KRS portal BIMA UPN "Veteran" Yogyakarta.
+Automated KRS monitoring and auto-enrollment bot for BIMA portal at UPN "Veteran" Yogyakarta.
 
----
+## Features
 
-## 🚀 Fitur Utama
+- **Priority Auto-Enroll**: Monitors course slot availability and automatically enrolls based on defined priority rankings.
+- **Radix UI Checkbox Support**: Injects JavaScript click events to interact with `<button role="checkbox">` elements cleanly.
+- **Persistent Sessions**: Reuses browser context (`browser_data/`) to maintain login state and minimize CAPTCHAs.
+- **Resilient Error Handling**: Detects session expiration and HTTP 500/502/503 server errors with anti-spam alert mechanisms.
+- **Multi-channel Notifications**: Sends instant alerts via SMTP email and desktop notification upon slot detection or system errors.
 
-- **Smart Scraper & Priority Auto-Enroll**: Memantau ketersediaan slot KRS dan otomatis mengeksekusi kelas target berdasarkan hirarki prioritas yang Anda atur.
-- **Support UI Modern (Radix UI / Shadcn)**: Menggunakan JavaScript DOM evaluation untuk mengeklik elemen `<button role="checkbox">` secara presisi tanpa terhalang CSS overlay.
-- **Persistent Session**: Menggunakan *browser context* lokal (`browser_data/`) untuk mempertahankan sesi login tanpa harus berulang kali menyelesaikan Captcha.
-- **Resilient & Anti Spam Error**: Memiliki sistem pendeteksi otomatis saat sesi ter-logout atau server kampus mengalami *Internal Server Error (500/502/503)*. Notifikasi email error hanya terkirim sekali hingga sistem pulih kembali.
-- **Notifikasi Multi-Channel**: Peringatan instan via Email (SMTP) dan Notifikasi Desktop lokal jika slot dibuka atau jika terjadi error sistem.
-
----
-
-## 📂 Struktur Repositori
+## Repository Structure
 
 ```
 BotKrs/
-├── main.py              # Logika utama bot KRS (scraping, priority check & clicker)
-├── config_reader.py     # Parser konfigurasi (.env dan config.txt)
-├── notifier.py          # Modul notifikasi Email & Desktop
-├── utils.py             # Utilitas bersama (Colors, terminal helper)
-├── requirements.txt     # Dependensi Python & Playwright
-├── .env.example         # Template variabel lingkungan
-├── .gitignore           # Menjaga file rahasia & build lokal agar tidak ter-push
-└── tests/               # Unit test suite (Pytest & Playwright)
+├── main.py              # Main monitoring and enrollment loop
+├── config_reader.py     # Configuration loader (.env & config.txt)
+├── notifier.py          # SMTP & desktop notification handler
+├── utils.py             # Shared utilities and color formatting
+├── requirements.txt     # Python dependencies
+├── .env.example         # Template environment variables
+├── .gitignore           # Git ignore rules
+└── tests/               # Unit test suite
     └── test_check_slots.py
 ```
 
----
+## Quick Start
 
-## 🛠️ Penggunaan (Developer / Linux / macOS)
-
-### 1. Instalasi Dependensi
+### 1. Installation
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -41,47 +35,40 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-### 2. Konfigurasi Environment
-Salin `.env.example` menjadi `.env`:
+### 2. Configuration
+Copy `.env.example` to `.env` and set your target courses:
 ```bash
 cp .env.example .env
 ```
-Edit `.env` sesuai kebutuhan target Anda:
+Example `.env`:
 ```env
-# Email Notifikasi (Opsional)
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
-SENDER_EMAIL=email_kamu@gmail.com
-SENDER_PASSWORD=app_password_gmail
-RECEIVER_EMAIL=email_tujuan@gmail.com
+SENDER_EMAIL=your_email@gmail.com
+SENDER_PASSWORD=your_app_password
+RECEIVER_EMAIL=your_email@gmail.com
 
-# Target Matkul (Format: KODE_MATKUL:KELAS_PRIORITAS_1, KODE_MATKUL:KELAS_PRIORITAS_2)
-TARGET_COURSES=142240283:EA-C, 142240283:EA-B, 142240373:EA-A
 CHECK_INTERVAL_SECONDS=10
+TARGET_COURSES=142240283:EA-C, 142240283:EA-B
 ```
 
-### 3. Jalankan Bot
+### 3. Usage
 ```bash
 python main.py
 ```
 
----
+## Testing
 
-## 🧪 Menguji Skenario (Unit Testing)
-
-Proyek ini dilengkapi dengan 19 skenario pengujian otomatis menggunakan Pytest & Playwright:
-
+Run unit tests:
 ```bash
 source venv/bin/activate
 pytest tests/test_check_slots.py -v
 ```
 
----
+## Windows Distribution
 
-## 🪟 Penggunaan untuk Pengguna Windows (Non-Teknis)
-
-Untuk teman/pengguna non-teknis di Windows, gunakan paket ZIP **`BotKRS_Untuk_Teman.zip`**:
-1. Ekstrak `BotKRS_Untuk_Teman.zip`.
-2. Klik ganda **`INSTALL.bat`** (hanya sekali saat pertama kali instalasi).
-3. Isi data target mata kuliah pada file **`config.txt`**.
-4. Klik ganda **`MULAI.bat`** untuk menjalankan bot.
+For non-technical Windows users, download `BotKRS_Untuk_Teman.zip`:
+1. Extract `BotKRS_Untuk_Teman.zip`.
+2. Double-click `INSTALL.bat` (first-time setup).
+3. Fill in target courses in `config.txt`.
+4. Double-click `MULAI.bat` to run.
