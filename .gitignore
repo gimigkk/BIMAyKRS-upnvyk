@@ -1,0 +1,24 @@
+# Secrets & Local Configs
+.env
+windows/
+
+# Browser Session & Storage
+browser_data/
+
+# Distribution Artifacts
+*.zip
+BotKRS_Untuk_Teman.zip
+
+# Python Virtual Environments & Caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build & Test Caches
+.pytest_cache/
+build/
+dist/
+scratch/

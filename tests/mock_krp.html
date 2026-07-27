@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock KRP BIMA</title>
+</head>
+<body>
+    <div>
+        <!-- Accordion trigger -->
+        <button aria-expanded="false" id="course_btn">
+            <span>142240283</span><br>
+            <span>Advanced Excel</span>
+        </button>
+        <!-- The table -->
+        <div id="course_content" style="display: none;">
+            <table>
+                <tbody>
+                    <tr id="row-A">
+                        <td>1</td>
+                        <td>EA-A</td>
+                        <td>3 SKS</td>
+                        <td>Senin</td>
+                        <td>08:00</td>
+                        <td class="sisa">0</td>
+                        <td><button type="button" role="checkbox" class="ambil-btn" aria-checked="false"></button></td>
+                    </tr>
+                    <tr id="row-B">
+                        <td>2</td>
+                        <td>EA-B</td>
+                        <td>3 SKS</td>
+                        <td>Selasa</td>
+                        <td>10:00</td>
+                        <td class="sisa">0</td>
+                        <td><button type="button" role="checkbox" class="ambil-btn" aria-checked="false"></button></td>
+                    </tr>
+                    <tr id="row-C">
+                        <td>3</td>
+                        <td>EA-C</td>
+                        <td>3 SKS</td>
+                        <td>Rabu</td>
+                        <td>13:00</td>
+                        <td class="sisa">0</td>
+                        <td><button type="button" role="checkbox" class="ambil-btn" aria-checked="false"></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Simulasi click accordion membuka class list
+        document.getElementById('course_btn').addEventListener('click', function() {
+            this.setAttribute('aria-expanded', 'true');
+            document.getElementById('course_content').style.display = 'block';
+        });
+        
+        // Simulasi radix button checkbox click (prevent form submit defaults jika ada)
+        document.querySelectorAll('.ambil-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.setAttribute('aria-checked', 'true');
+                // Trigger JS alert/dialog
+                confirm("Apakah Anda yakin ingin mengambil kelas ini?");
+            });
+        });
+    </script>
+</body>
+</html>
