@@ -58,7 +58,7 @@ def load_config():
     # Defaults
     _config["SMTP_SERVER"] = "smtp.gmail.com"
     _config["SMTP_PORT"] = "587"
-    _config["CHECK_INTERVAL_SECONDS"] = "30"
+    _config["CHECK_INTERVAL_SECONDS"] = "5"
 
     # Coba baca .env dulu sebagai base
     env_path = os.path.join(os.getcwd(), ".env")
